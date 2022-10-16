@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Grid from "./Grid"
 import { IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
 import elevatorMusic from './elevator_music.mp3'
@@ -16,6 +16,10 @@ function App() {
   const [player1Score, setPlayer1Score] = useState(0)
   const [player2Score, setPlayer2Score] = useState(0)
   const [winner, setWinner] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [startGame]);
   
   const startPlaying = (e) => {
     e.preventDefault()
@@ -36,37 +40,37 @@ function App() {
       style={{ fontFamily: 'Silkscreen' }}>
       {!startGame && (
         <>
-         <p className="text-center mt-20 text-3xl">Bienvenue au jeux du morpion</p>
+         <p className="text-center mt-12 md:mt-20 text-3xl">Bienvenue au jeux du morpion</p>
          <p className="text-center mt-12 text-2xl mb-12">Entrez les noms des deux jours</p>
    
           <form className='flex-col items-center' onSubmit={(e) => startPlaying(e)}>
-            <div className="mb-6 flex justify-between items-center" style={{width: '26rem'}}>
+            <div className="md:w-104 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
               <label>Player 1:</label>
               <input 
                 type="text"
                 placeholder="Entrez un nom"
-                className="border rounded border-gray-300 px-2 py-1 !outline-none" 
+                className="border rounded border-gray-300 px-2 py-1 mt-3 md:mt-0 !outline-none" 
                 onChange={(e) => setPlayer1(e.target.value)} />
             </div>
-            <div className="mb-6 flex justify-between items-center" style={{width: '26rem'}}>
+            <div className="md:w-104 mb-6 flex flex-col md:flex-row justify-between items-start md:items-center">
               <label>Player 2:</label>
               <input 
                 type="text" 
                 placeholder="Entrez un nom"
-                className="border rounded border-gray-300 px-2 py-1 !outline-none"
+                className="border rounded border-gray-300 px-2 py-1 mt-3 md:mt-0 !outline-none"
                 onChange={(e) => setPlayer2(e.target.value)}/>
             </div>
          </form>
         <button 
-          className='bg-black rounded text-white py-1.5 px-6 shadow-lg mt-20'
+          className='bg-black rounded text-white py-1.5 px-6 shadow-md mt-8 md:mt-20 hover:scale-110'
           onClick={startPlaying}>PLAY</button>
-        <p className='mt-20'>{playersNameError}</p>
+        <p className='mt-8 md:mt-20 px-8'>{playersNameError}</p>
          
          </>
       )}
       {startGame && (
         <>
-          <p>Le morpion de la mort</p>
+          <p className="text-2xl mt-8 md:mt-16 mb-4">Le morpion de la mort</p>
           <button 
             className="mb-10 bg-red-40" 
             onClick={() => { play ? audio.pause() : audio.play(); setPlay(!play)}}>
@@ -81,8 +85,8 @@ function App() {
             setWinner={setWinner}
             count={count}
             setCount={setCount} />
-          <div className="flex w-60 justify-center">
-            <div className="flex-col">
+          <div className="flex justify-center">
+            <div className="flex-col ml-16 mr-4">
               <p className="mr-12 capitalize text-lg">{player1}: <b>X</b></p>
               <p>{player1Score} {`${player1Score == 0 ? 'point' : 'points'}`}</p>
             </div>
@@ -93,10 +97,14 @@ function App() {
           </div>
           <div>
             {winner && (
-              <>
-                <button onClick={() => { setWinner(false); setCount(1)}}>continuer</button>
-                <button onClick={() => { setWinner(false); setCount(1); setStartGame(false); audio.pause()}}>Quitter</button>
-              </>
+              <div className="mt-12 flex justify-center">
+                <button
+                  className="mr-12 border border-black px-3 py-2 rounded shadow-md hover:scale-110" 
+                  onClick={() => { setWinner(false); setCount(1); setStartGame(false); audio.pause()}}>Quitter</button>
+                <button 
+                  className="border border-black px-3 py-2 rounded shadow-md hover:scale-110"
+                  onClick={() => { setWinner(false); setCount(1)}}>continuer</button>
+              </div>
             )}
           </div>
         </>
