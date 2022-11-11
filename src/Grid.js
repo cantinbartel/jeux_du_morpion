@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import newScoreSound from './casino-bling.wav'
+import newScoreSound from './music/casino-bling.wav'
 
 // Cell Component - Chaque case de la grille
 const Cell = ({ number, combination, winner, handleClick }) => {
@@ -19,15 +19,17 @@ const rows = [1, 2, 3]
 const audioNewScore = new Audio(newScoreSound)
 audioNewScore.loop = false
 
+// États visibles dans la console
 console.log('combination: ', combination)
 console.log('winner', winner)
 console.log('count', count)
+
 useEffect(() => {
     setCount(count + 1)
     checkCombination()
 }, [combination])
 
-
+// Regénère une grille vide
 useEffect(() => {
     setCombination(Array(9).fill(''))
 }, [winner])

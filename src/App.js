@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import Grid from "./Grid"
 import { IoVolumeHigh, IoVolumeMute } from 'react-icons/io5'
-import elevatorMusic from './elevator_music.mp3'
+import elevatorMusic from './music/elevator_music.mp3'
 
 const audio = new Audio(elevatorMusic)
 audio.loop = true
@@ -17,6 +17,7 @@ function App() {
   const [player2Score, setPlayer2Score] = useState(0)
   const [winner, setWinner] = useState(false)
 
+// Repositionne la page lorsque l'on revient à l'écran d'acceuil (version mobile)
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [startGame]);
@@ -103,7 +104,7 @@ function App() {
                   onClick={() => { setWinner(false); setCount(1); setStartGame(false); audio.pause()}}>Quitter</button>
                 <button 
                   className="border border-black px-3 py-2 rounded shadow-md hover:scale-110"
-                  onClick={() => { setWinner(false); setCount(1)}}>continuer</button>
+                  onClick={() => setWinner(false)}>continuer</button>
               </div>
             )}
           </div>
