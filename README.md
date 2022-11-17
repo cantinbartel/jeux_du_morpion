@@ -1,8 +1,6 @@
 -- Instructions :
 
 -- avec Docker
-
------
 # Dans le terminal, à la racine du dossier principal entrez la commande 'docker build -t morpion_app . ' (le point . est important) pour créer l'image.
 
 ## Entrez la commande 'docker run --name morpion_app_container -p 3000:3000 --rm morpion_app' pour créer et lancer le container, l'application s'ouvrira sur le port 3000.
