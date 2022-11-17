@@ -1,9 +1,9 @@
 -- Instructions :
 # Vous devez avoir Node.js installé sur votre machine pour pouvoir lancer React
 
-## Dans le terminal utilisez la commande 'npm start'
+## Dans le terminal utilisez la commande 'npm install' pour télécharger les dépendences nécessaire au bon fonctionnement de l'application.
 
-### l'application s'ouvrira sur le port 3000 de votre localhost
+### Dans le terminal utilisez la commande 'npm start', l'application s'ouvrira sur le port 3000 de votre localhost
 
 #### N'oubliez pas de mettre le volume de votre ordinateur sur 'unmute' pour profiter de la petite musique d'ascenseur proposée pendant la partie
 
